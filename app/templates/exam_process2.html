@@ -1,0 +1,46 @@
+{% extends "template.html" %}
+{% block content %}
+
+    
+    <p id="time_remain" HIDDEN>{{ duration }}</p>
+    
+
+    <!-- JavaScript includes -->
+    <script src="/static/countdown/jquery-1.7.1.min.js"></script>
+    <script src="/static/countdown/jquery.countdown.js"></script>
+    <script src="/static/countdown/script.js"></script>
+    
+    <form method=POST>
+    {% for question in questions %}
+    <div class=question>
+        <p>{{ question[0] }}</p>
+        {% for answer in question[1] %}
+            <input type="{{ question[2] }}" name="{{ question[0] }}" value="{{ answer[0] }}" {% if answer[1] %}checked{% endif %}>{{ answer[0] }}<br>
+        {% endfor %}
+    </div>
+    {% endfor %}
+    
+    
+    {% if submitted %}
+        <p id="button" HIDDEN>Nộp lại</p>
+        <div class=accept>
+        <p>Bạn đã nộp bài rồi, bạn có muốn cập nhật bài làm?</p>
+        <p id="note"></p>
+        <div>
+    {% else %}
+        <p id="button" HIDDEN>Nộp bài</p>
+        <div class=deny>
+        <p>Bạn chưa nộp bài!</p>
+        <p id="note"></p>
+        </div>
+    {% endif %}
+    </form>
+<!-- 
+    <form id="hieu">
+    <input type=username>
+    </form>
+    <script language="javascript">
+    document.getElementById("hieu").style.display='none';
+    </script> -->
+    
+{% endblock %}

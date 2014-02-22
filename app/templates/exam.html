@@ -1,0 +1,13 @@
+{% extends "template.html" %}
+{% block content %}
+    {% if exams %}
+        <p>Các kì thi hiện có:</p>
+        <ul>
+        {% for exam in exams %}
+            <li><a href='/exam/{{ exam['link'] }}'>{{ exam['name'] }}</a></li>
+        {% endfor %}
+        </ul>
+    {% else %}
+        <p>Hiện tại không có kì thi nào!</p>
+    {% endif %}
+{% endblock %}

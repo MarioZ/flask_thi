@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+	<html>
+		<head>
+            <meta charset="utf-8" />
+			<title>Xin chào</title>
+			<link rel="stylesheet" href="{{ url_for('static', filename='css/fuu.css') }}">
+		</head>
+		<body>
+			<div class="container">
+				<div class="navigator">
+                    <a href="/"><li>Trang chủ</li></a>
+					<a href="/exam"><li>Dự thi</li></a>
+					<a href="/contact"><li>Liên hệ</li></a>
+                    <p>------------------------------</p>
+					{% if 'fullname' in session %}
+                        <p>Chào bạn {{ session['fullname'] }}</p>
+                        <a href="/logout"><li>Thoát</li></a>
+					{% else %}
+                        <a href="/login"><li>Đăng nhập</li></a>
+					{% endif %}
+                    
+				</div>
+                
+				<div class="content">
+					{% block content %}
+					{% endblock %}
+				</div>
+			</div>
+		</body>
+	</html>

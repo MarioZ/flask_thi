@@ -1,0 +1,16 @@
+{% extends "template.html" %}
+{% block content %}
+	{% if error %}
+		<p>{{ error }}</p>
+	{% endif %}
+	<p>Đăng nhập</p>
+    {% if page=='index' %}
+        <form action='/login' method=POST>
+    {% else %}
+        <form action='/login?page={{ page }}' method=POST>
+    {% endif %}
+		<input type=text name=username value="{{ request.form.username }}">
+		<input type=password name=password>
+		<input type=submit value="Đăng nhập">
+	</form>
+{% endblock %}
